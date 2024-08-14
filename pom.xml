@@ -25,7 +25,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${jakarta.persistence.version}</version>
+            <version>3.0.0</version>
         </dependency>
 
         <!-- H2 Database (for testing purposes) -->
