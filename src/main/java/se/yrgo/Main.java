@@ -1,19 +1,36 @@
 package se.yrgo;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
-        // Press Skift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Tutor tutor = new Tutor("James Blont");
+        Student student1 = new Student("Greta Gris");
+        Student student2 = new Student("Bill Skarsgård");
+        Student student3 = new Student("Miles Davis");
 
-            // Press Skift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        tutor.addStudent(student1);
+        tutor.addStudent(student2);
+        tutor.addStudent(student3);
+
+        session.persist(tutor);
+
+        session.getTransaction().commit();
+
+        session.beginTransaction();
+        Tutor retrievedTutor = session.get(Tutor.class, tutor.getId());
+        for (Student student : retrievedTutor.getStudents()) {
+            System.out.println("Student: " + student.getName());
         }
+        session.getTransaction().commit();
+
+        session.close();
+        sessionFactory.close();
     }
 }
