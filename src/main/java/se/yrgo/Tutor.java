@@ -15,6 +15,9 @@ public class Tutor {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students = new ArrayList<>();
 
+    public Tutor(String tutor) {
+    }
+
     public Long getId() {
         return id;
     }
@@ -37,5 +40,9 @@ public class Tutor {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
     }
 }
