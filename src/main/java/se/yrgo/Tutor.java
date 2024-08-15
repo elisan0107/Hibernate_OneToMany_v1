@@ -15,8 +15,6 @@ public class Tutor {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students = new ArrayList<>();
 
-
-    // Getters and setters
     public Long getId() {
         return id;
     }
