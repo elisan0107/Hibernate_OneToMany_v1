@@ -13,7 +13,11 @@ public class Student {
 
     private String name;
 
-    public Student(String student) {
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public Student() {
     }
 
     public Long getId() {

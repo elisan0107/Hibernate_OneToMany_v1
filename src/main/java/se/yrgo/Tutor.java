@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
 public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,12 @@ public class Tutor {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student> students = new ArrayList<>();
 
-    public Tutor(String tutor) {
+    public Tutor(String name) {
+        this.name = name;
+    }
+
+    public Tutor() {
+
     }
 
     public Long getId() {

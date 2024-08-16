@@ -25,6 +25,7 @@ public class Main {
 
         session.beginTransaction();
         Tutor retrievedTutor = session.get(Tutor.class, tutor.getId());
+        System.out.println("Tutor: " + tutor.getName());
         for (Student student : retrievedTutor.getStudents()) {
             System.out.println("Student: " + student.getName());
         }
